@@ -22,8 +22,8 @@
         <div class="row g-4">
             {% for match in matches %}
                 <div class="col-lg-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body p-4 text-center">
+                    <div class="card shadow" style="height: 750px; display: flex; flex-direction: column;">
+                        <div class="card-body p-4 text-center" style="overflow-y: auto; flex: 1;">
                             {% if match.brother.photo %}
                                 <img src="{{ match.brother.photo.url }}" 
                                      alt="{{ match.brother.name }}" 
@@ -53,9 +53,26 @@
                                 <p class="text-muted small">{{ match.brother.description|truncatewords:50 }}</p>
                             </div>
                             
+                            {% if match.brother.badges.exists %}
+                            <div class="text-start mb-4">
+                                <h6 class="fw-bold mb-3">Interests & Skills:</h6>
+                                {% load static %}
+                                <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                                    {% for badge in match.brother.badges.all %}
+                                    <div class="badge-pill-card {{ badge.pillar|lower }}" style="width: 90%;">
+                                        <img src="{% static badge.icon_image %}" 
+                                             alt="{{ badge.name }}" 
+                                             class="badge-pill-icon-card">
+                                        <span class="badge-pill-name-card">{{ badge.name }}</span>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            
                             <a href="{{ match.calendar_link }}" 
                                target="_blank"
-                               class="btn btn-primary w-100">
+                               class="btn btn-primary w-100 mt-3">
                                 ☕ Schedule Coffee Chat
                             </a>
                         </div>

@@ -43,7 +43,7 @@
                                                 {{ brother.name.0 }}
                                             </div>
                                         {% endif %}
-                                        <div>
+                                        <div class="flex-grow-1">
                                             <h6 class="mb-0 fw-bold">{{ brother.name }}</h6>
                                             <small class="text-muted">
                                                 {{ brother.year }} | {{ brother.major }}
@@ -52,6 +52,12 @@
                                             <small class="text-muted">
                                                 {{ brother.user.email }}
                                             </small>
+                                            {% if brother.badges.exists %}
+                                            <br>
+                                            <small class="text-muted">
+                                                <span class="badge badge-count">{{ brother.badges.count }}</span> badges selected
+                                            </small>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

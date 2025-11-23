@@ -89,6 +89,47 @@
                             </small>
                         </div>
                         
+                        <!-- Badges Selection -->
+                        <div class="mb-4 badges-container">
+                            <label class="form-label fw-bold">Select Your Badges (Optional)</label>
+                            <p class="badges-help-text">Choose badges that represent your interests in relation to Theta Tau's three pillars</p>
+                            
+                            {% load static %}
+                            {% regroup form.badges.field.queryset by pillar as pillar_groups %}
+                            
+                            {% for pillar_group in pillar_groups %}
+                            <div class="badges-section">
+                                <div class="pillar-header {{ pillar_group.grouper|lower }}">
+                                    {{ pillar_group.grouper }}
+                                </div>
+                                
+                                <div class="badge-grid-3col">
+                                    {% for badge in pillar_group.list %}
+                                    <label class="badge-checkbox-item-vertical" for="id_badges_{{ badge.id }}">
+                                        <input type="checkbox" 
+                                               name="badges" 
+                                               value="{{ badge.id }}" 
+                                               id="id_badges_{{ badge.id }}"
+                                               {% if badge in form.badges.value %}checked{% endif %}>
+                                        <div class="badge-content-vertical">
+                                            <img src="{% static badge.icon_image %}" 
+                                                 alt="{{ badge.name }}" 
+                                                 class="badge-icon-large-form">
+                                            <span class="badge-name-vertical">{{ badge.name }}</span>
+                                        </div>
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                            {% if form.badges.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.badges.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 Create Profile

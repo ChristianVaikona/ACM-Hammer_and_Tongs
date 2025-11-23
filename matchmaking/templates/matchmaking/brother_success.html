@@ -48,7 +48,24 @@
                             </p>
                             
                             <h6 class="fw-bold mb-2">About Me:</h6>
-                            <p class="mb-0">{{ profile.description }}</p>
+                            <p class="mb-3">{{ profile.description }}</p>
+                            
+                            {% if profile.badges.exists %}
+                            <div class="mt-4">
+                                <h6 class="fw-bold mb-3">My Interests & Skills:</h6>
+                                {% load static %}
+                                <div class="badges-display-prominent">
+                                    {% for badge in profile.badges.all %}
+                                    <div class="badge-pill-large {{ badge.pillar|lower }}">
+                                        <img src="{% static badge.icon_image %}" 
+                                             alt="{{ badge.name }}" 
+                                             class="badge-pill-icon-large">
+                                        <span class="badge-pill-name-large">{{ badge.name }}</span>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

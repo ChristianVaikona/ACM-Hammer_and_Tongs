@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import BrotherProfile, PNMProfile, CustomUser
+from .models import BrotherProfile, PNMProfile, CustomUser, Badge
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -49,9 +49,16 @@ class AdminCreateUserForm(forms.Form):
 
 class BrotherProfileForm(forms.ModelForm):
     """Form for brothers to create their profile"""
+    badges = forms.ModelMultipleChoiceField(
+        queryset=Badge.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        help_text="Select badges that represent your interests (optional)"
+    )
+    
     class Meta:
         model = BrotherProfile
-        fields = ['name', 'year', 'major', 'photo', 'description']
+        fields = ['name', 'year', 'major', 'photo', 'description', 'badges']
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-control',
