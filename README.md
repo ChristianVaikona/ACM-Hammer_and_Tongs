@@ -162,6 +162,9 @@ python manage.py createsuperuser
 | SECRET_KEY | Django secret key | django-insecure-xyz... |
 | ALLOWED_HOSTS | Comma-separated list of allowed hosts | .railway.app,mydomain.com |
 | DATABASE_URL | PostgreSQL connection string | postgresql://user:pass@host:port/db |
+| CUSTOM_DOMAIN | (Optional) Custom domain for CSRF | yourdomain.com |
+
+**Note:** CSRF_TRUSTED_ORIGINS is automatically configured for Railway domains to prevent CSRF verification errors.
 
 ## Project Structure
 

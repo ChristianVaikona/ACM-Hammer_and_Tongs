@@ -47,10 +47,20 @@ SECRET_KEY=<generate-secure-key>
 ALLOWED_HOSTS=.railway.app
 ```
 
+**Optional (if using custom domain):**
+```
+CUSTOM_DOMAIN=yourdomain.com
+```
+
 **Generate SECRET_KEY:**
 ```python
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
+
+**Note:** CSRF_TRUSTED_ORIGINS is automatically configured to include:
+- All *.railway.app domains
+- Your custom domain (if CUSTOM_DOMAIN is set)
+- This prevents CSRF verification errors on Railway
 
 ### 5. Deploy
 - [ ] Railway will automatically detect Django and deploy
