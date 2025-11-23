@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn thetatau_matchmaking.wsgi"
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
+
