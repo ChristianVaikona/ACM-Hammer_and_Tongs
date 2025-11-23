@@ -3,120 +3,99 @@ from matchmaking.models import Badge
 
 
 class Command(BaseCommand):
-    help = 'Populate the database with Theta Tau badges for the three pillars'
+    help = 'Populate the database with Theta Tau badges based on image files'
 
     def handle(self, *args, **kwargs):
-        # Define all badges
+        # Define all badges based on actual image files
         badges_data = [
             # Brotherhood badges
             {
-                'name': 'Mentorship',
+                'name': 'Artistic',
                 'pillar': 'BROTHERHOOD',
-                'description': 'Guiding and supporting fellow members',
-                'icon_image': 'images/badges/mentorship.png',
+                'description': 'Interests in arts, music, and creative activities',
+                'icon_image': 'images/badges/brotherhood-artistic.png',
                 'order': 1
             },
             {
-                'name': 'Social Events',
+                'name': 'Fitness',
                 'pillar': 'BROTHERHOOD',
-                'description': 'Organizing and participating in brotherhood activities',
-                'icon_image': 'images/badges/social-events.png',
+                'description': 'Sports, exercise, and physical activities',
+                'icon_image': 'images/badges/brotherhood-fitness.png',
                 'order': 2
             },
             {
-                'name': 'Team Building',
+                'name': 'Brotherhood',
                 'pillar': 'BROTHERHOOD',
-                'description': 'Fostering collaboration and unity',
-                'icon_image': 'images/badges/team-building.png',
+                'description': 'General brotherhood values and activities',
+                'icon_image': 'images/badges/brotherhood-og.png',
                 'order': 3
             },
             {
-                'name': 'Networking',
+                'name': 'Outdoors',
                 'pillar': 'BROTHERHOOD',
-                'description': 'Building connections within the chapter',
-                'icon_image': 'images/badges/networking.png',
+                'description': 'Hiking, camping, and outdoor adventures',
+                'icon_image': 'images/badges/brotherhood-outdoors.png',
                 'order': 4
-            },
-            {
-                'name': 'Tradition Keeper',
-                'pillar': 'BROTHERHOOD',
-                'description': 'Upholding Theta Tau traditions and values',
-                'icon_image': 'images/badges/tradition-keeper.png',
-                'order': 5
             },
             
             # Professionalism badges
             {
-                'name': 'Leadership',
+                'name': 'Career Development',
                 'pillar': 'PROFESSIONALISM',
-                'description': 'Leading projects and initiatives',
-                'icon_image': 'images/badges/leadership.png',
+                'description': 'Focus on professional growth and career advancement',
+                'icon_image': 'images/badges/profession-career.png',
                 'order': 1
             },
             {
-                'name': 'Career Development',
+                'name': 'Finance',
                 'pillar': 'PROFESSIONALISM',
-                'description': 'Focus on professional growth and skills',
-                'icon_image': 'images/badges/career-development.png',
+                'description': 'Finance, business, and economics expertise',
+                'icon_image': 'images/badges/profession-finance.png',
                 'order': 2
             },
             {
-                'name': 'Industry Expert',
+                'name': 'Professionalism',
                 'pillar': 'PROFESSIONALISM',
-                'description': 'Deep knowledge in engineering field',
-                'icon_image': 'images/badges/industry-expert.png',
+                'description': 'General professional development and skills',
+                'icon_image': 'images/badges/profession-og.png',
                 'order': 3
             },
             {
-                'name': 'Public Speaking',
+                'name': 'Technical Skills',
                 'pillar': 'PROFESSIONALISM',
-                'description': 'Presenting and communicating effectively',
-                'icon_image': 'images/badges/public-speaking.png',
+                'description': 'Engineering, coding, and technical expertise',
+                'icon_image': 'images/badges/profession-technical.png',
                 'order': 4
-            },
-            {
-                'name': 'Resume & Interview',
-                'pillar': 'PROFESSIONALISM',
-                'description': 'Helping others with career preparation',
-                'icon_image': 'images/badges/resume-interview.png',
-                'order': 5
             },
             
             # Service badges
             {
-                'name': 'Community Outreach',
+                'name': 'Community Service',
                 'pillar': 'SERVICE',
-                'description': 'Volunteering in local community',
-                'icon_image': 'images/badges/community-outreach.png',
+                'description': 'Local volunteer work and community involvement',
+                'icon_image': 'images/badges/service-community.png',
                 'order': 1
             },
             {
                 'name': 'Environmental',
                 'pillar': 'SERVICE',
-                'description': 'Sustainability and environmental initiatives',
-                'icon_image': 'images/badges/environmental.png',
+                'description': 'Sustainability and green initiatives',
+                'icon_image': 'images/badges/service-environment.png',
                 'order': 2
             },
             {
-                'name': 'Education',
+                'name': 'Service',
                 'pillar': 'SERVICE',
-                'description': 'Tutoring and educational programs',
-                'icon_image': 'images/badges/education.png',
+                'description': 'General service activities and volunteer work',
+                'icon_image': 'images/badges/service-og.png',
                 'order': 3
             },
             {
-                'name': 'Fundraising',
+                'name': 'Outreach',
                 'pillar': 'SERVICE',
-                'description': 'Organizing charitable fundraising events',
-                'icon_image': 'images/badges/fundraising.png',
+                'description': 'Community outreach programs and engagement',
+                'icon_image': 'images/badges/service-outreach.png',
                 'order': 4
-            },
-            {
-                'name': 'Global Impact',
-                'pillar': 'SERVICE',
-                'description': 'International service and awareness',
-                'icon_image': 'images/badges/global-impact.png',
-                'order': 5
             },
         ]
         
@@ -154,4 +133,3 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS(f'Total badges in database: {Badge.objects.count()}')
         )
-
